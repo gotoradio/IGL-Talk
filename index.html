@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmübersicht</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .program-list {
+            margin: 20px 0;
+        }
+        .program-item {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .timer {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Programmübersicht</h1>
+<div class="program-list">
+    <div class="program-item">
+        <h2>Programmpunkt 1</h2>
+        <p>Raum: A101</p>
+        <p class="timer" id="timer1"></p>
+        <script>
+            const countdown1 = new Date("2024-10-02T12:00:00").getTime();
+            const timer1 = document.getElementById("timer1");
+
+            const x1 = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdown1 - now;
+
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timer1.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+
+                if (distance < 0) {
+                    clearInterval(x1);
+                    timer1.innerHTML = "Programm gestartet!";
+                }
+            }, 1000);
+        </script>
+    </div>
+
+    <div class="program-item">
+        <h2>Programmpunkt 2</h2>
+        <p>Raum: B202</p>
+        <p class="timer" id="timer2"></p>
+        <script>
+            const countdown2 = new Date("2024-10-02T13:00:00").getTime();
+            const timer2 = document.getElementById("timer2");
+
+            const x2 = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdown2 - now;
+
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timer2.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+
+                if (distance < 0) {
+                    clearInterval(x2);
+                    timer2.innerHTML = "Programm gestartet!";
+                }
+            }, 1000);
+        </script>
+    </div>
+
+    <!-- Füge hier weitere Programmpunkte hinzu -->
+</div>
+
+</body>
+</html>
