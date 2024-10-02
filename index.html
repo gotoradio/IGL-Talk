@@ -43,8 +43,8 @@
             cursor: pointer;
             border: none;
             background: transparent;
-            width: 50px; /* Erhöhte Breite */
-            height: 50px; /* Erhöhte Höhe */
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -54,11 +54,16 @@
             transform: scale(1.1);
         }
         .icon {
-            width: 40px; /* Größe des Icons erhöhen */
+            width: 40px;
             height: 40px;
-            fill: none; /* Kein Füllstil */
-            stroke: black; /* Schwarz als Linienfarbe */
-            stroke-width: 2; /* Dickere Linien */
+            fill: none;
+            stroke-width: 2;
+        }
+        .icon-light {
+            stroke: black;
+        }
+        .icon-dark {
+            stroke: white;
         }
     </style>
 </head>
@@ -66,9 +71,9 @@
 
 <h1>Programmübersicht</h1>
 <button class="toggle-button" id="toggleButton" aria-label="Wechsel zwischen Light- und Dark-Mode">
-    <svg class="icon" id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <svg class="icon icon-light" id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <!-- Mond-Symbol (Standard) -->
-        <path id="moonIcon" d="M21.75 12.4A9.76 9.76 0 0 1 12 22a9.76 9.76 0 0 1-4.88-1.27A9.75 9.75 0 0 0 19 4.88 9.77 9.77 0 0 1 21.75 12.4Z" />
+        <path id="moonIcon" d="M21.75 12.4A9.76 9.76 0 0 1 12 22a9.76 9.76 0 0 1-4.88-1.27A9.75 9.75 0 0 0 19 4.88 9.77 9.77 0 0 1 21.75 12.4Z"/>
     </svg>
 </button>
 
@@ -137,6 +142,7 @@
     // Überprüfe die Systemeinstellungen für den Dark-Mode
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add("dark-mode");
+        icon.setAttribute("class", "icon icon-dark");
         icon.querySelector('path').setAttribute("d", sunIconPath);
     }
 
@@ -145,8 +151,10 @@
         const path = icon.querySelector('path');
         if (document.body.classList.contains("dark-mode")) {
             path.setAttribute("d", sunIconPath);
+            icon.setAttribute("class", "icon icon-dark");
         } else {
             path.setAttribute("d", moonIconPath);
+            icon.setAttribute("class", "icon icon-light");
         }
     });
 </script>
